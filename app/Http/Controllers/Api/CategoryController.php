@@ -19,4 +19,8 @@ class CategoryController extends Controller
         return new CategoryResource($category);
     }
 
+    public function list()
+    {
+        return CategoryResource::collection(Category::all());
+    }
 }

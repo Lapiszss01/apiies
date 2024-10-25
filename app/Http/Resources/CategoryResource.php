@@ -14,10 +14,17 @@ class CategoryResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        //En vez de hacer condiciones para mostrar la description en segun que rutas, es mejor crear
+        //distintos resources
         return [
             'id' => $this->id,
             'name' => $this->name,
-
+            'description' => $this->when($request->is('api/categories*'), function () use ($request) {
+                if ($request->is('api/categories')) {
+                    return str($this->description)->limit(20);
+                }
+                return $this->description;
+            }),
         ];
     }
 }
