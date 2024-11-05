@@ -31,6 +31,7 @@ class CategoryController extends Controller
     {
         $data = $request->all();
 
+        //Huele a examen
         if($request->hasFile('photo')){
             $file = $request->file('photo');
             // categories/ es la carpeta en la que se guardará el file
